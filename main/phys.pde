@@ -4,40 +4,22 @@ public class Phys extends State{
   FWorld world;
   Phys(){
     name = "phys";
+    Fisica.setScale(100);
     world = new FWorld();
-    FPoly p = new FPoly();
-    p.vertex(-2, -20);
-    p.vertex(2, -20);
-    p.vertex(3, -18);
-    p.vertex(3, -16);
-    p.vertex(2, -14);
-    p.vertex(2, -10);
-    p.vertex(4, -10);
-    p.vertex(5, 0);
-    p.vertex(3, -9);
-    p.vertex(3, 2);
-    p.vertex(5, 19);
-    p.vertex(4, 20);
-    p.vertex(1, 4);
-    p.vertex(-1, 4);
-    p.vertex(-4, 20);
-    p.vertex(-5, 19);
-    p.vertex(-3, 2);
-    p.vertex(-3, -9);
-    p.vertex(-5, 0);
-    p.vertex(-4, -10);
-    p.vertex(-2, -10);
-    p.vertex(-2, -14);
-    p.vertex(-3, -16);
-    p.vertex(-3, -18);
-    p.setPosition(300, 100);
-    world.add(p);
-    p.setPosition(width/2, height/2);
-    world.add(p);
+    world.setGravity(0, -100);
+    for (int i=0;i<16;i++){
+      for (int j=0;j<16;j++){
+        FCircle head = new FCircle(16);
+        head.setPosition(16+i*width/16,16+j*height/16);
+        head.setFillColor(color(random(255), random(255), random(255)));
+        head.setRestitution(1);
+        head.setFriction(0);
+        world.add(head);
+      }
+    }
     world.setEdges();
-    world.remove(world.top);
-    world.setEdgesFriction(1000);
-    world.setEdgesRestitution(0);
+    world.setEdgesFriction(0);
+    world.setEdgesRestitution(1);
   }
   public void update(){
     background(255);
