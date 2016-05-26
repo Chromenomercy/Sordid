@@ -3,6 +3,7 @@ import fisica.*;
 
 ControlP5 cp5;
 ArrayList<State> states = new ArrayList();
+//Use setState
 String state = "menu";
 
 class State{
@@ -23,6 +24,25 @@ void setup(){
   
   //States
   states.add(new Menu());
+  
+}
+
+void setState(String newState){
+  /* Use to change the state */
+  //Finish old state
+  for (State stateObject : states){
+    if (stateObject.name == state){
+      stateObject.finish();
+    }
+  }
+  //Start new state
+  for (State stateObject : states){
+    if (stateObject.name == newState){
+      stateObject.begin();
+    }
+  }
+  //Change state
+  state = newState;
 }
 
 void draw(){
