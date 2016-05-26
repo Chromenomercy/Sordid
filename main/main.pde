@@ -4,7 +4,7 @@ import fisica.*;
 ControlP5 cp5;
 ArrayList<State> states = new ArrayList();
 //Use setState
-String state = "menu";
+String state = "phys";
 
 class State{
   /* Base class for states to extend */
@@ -24,6 +24,7 @@ void setup(){
   
   //States
   states.add(new Menu());
+  states.add(new Phys());
   
 }
 
