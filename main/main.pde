@@ -1,17 +1,18 @@
 import controlP5.*;
 import fisica.*;
+import java.util.Dictionary;
 
 ControlP5 cp5;
-ArrayList<State> states = new ArrayList();
+HashMap<String, State> states = new HashMap<String, State>();
 //Use setState
 String state = "menu";
 
 class State{
   /* Base class for states to extend */
-  public String name;
   public void update(){}
   public void begin(){}
   public void finish(){}
+  public void sendEvent(String e){}
 }
 
 void setup(){
@@ -23,34 +24,26 @@ void setup(){
   cp5.addFrameRate().setInterval(10).setPosition(0, 2);
   
   //States
-  states.add(new Menu());
+  states.put("menu", new Menu());
+  setState("menu");
   
 }
 
 void setState(String newState){
   /* Use to change the state */
   //Finish old state
-  for (State stateObject : states){
-    if (stateObject.name == state){
-      stateObject.finish();
-    }
-  }
+  states.get(state).finish();
   //Start new state
-  for (State stateObject : states){
-    if (stateObject.name == newState){
-      stateObject.begin();
-    }
-  }
+  states.get(newState).begin();
   //Change state
   state = newState;
 }
 
+public void controlEvent(ControlEvent theEvent) {
+  states.get(state).sendEvent(theEvent.getController().getName());
+}
+
 void draw(){
   //Get the object for the current state
-  for (State stateObject : states){
-    if (stateObject.name == state){
-      //Update the current state
-      stateObject.update();
-    }
-  }
+  states.get(state).update();
 }
