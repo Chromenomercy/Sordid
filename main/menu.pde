@@ -1,7 +1,10 @@
 
 
 public class Menu extends State{
-  String name = "menu";
+  
+  Menu(){
+    name = "menu";
+  }
   
   public void update(){
     background(0);

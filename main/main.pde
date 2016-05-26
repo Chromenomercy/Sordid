@@ -3,12 +3,14 @@ import fisica.*;
 
 ControlP5 cp5;
 ArrayList<State> states = new ArrayList();
-int state = 0;
+String state = "menu";
 
 class State{
   /* Base class for states to extend */
   public String name;
   public void update(){}
+  public void begin(){}
+  public void finish(){}
 }
 
 void setup(){
@@ -25,7 +27,10 @@ void setup(){
 
 void draw(){
   //Get the object for the current state
-  State stateObject = states.get(state);
-  //Update the current state
-  stateObject.update();
+  for (State stateObject : states){
+    if (stateObject.name == state){
+      //Update the current state
+      stateObject.update();
+    }
+  }
 }
