@@ -23,6 +23,10 @@ void setup(){
   
   //States
   states.add(new Menu());
+  
+  for (State stateObject : states){
+    stateObject.begin();
+  }
 }
 
 void draw(){
