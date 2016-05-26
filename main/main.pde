@@ -15,6 +15,7 @@ class State{
 }
 
 void setup(){
+  Fisica.init(this);
   fullScreen();
   frameRate(60);
   
