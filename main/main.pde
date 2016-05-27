@@ -14,6 +14,14 @@ class State{
   public void finish(){}
   public void sendEvent(String e){}
   public void sendKeyPress(char k){}
+  public void sendMouseClick(char e){}
+  public void sendMouseDragged(char e){}
+  public void sendMouseMoved(char e){}
+  public void sendMouseReleased(char e){}
+  public void sendMouseWheel(char e){}
+  public void sendMousePressed(char e){}
+  public void sendKeyReleased(char e){}
+  public void sendKeyTyped(char e){}
 }
 
 void setup(){
@@ -31,6 +39,39 @@ void setup(){
   
 }
 
+//Event handling
+public void keyPressed(){
+  states.get(state).sendKeyPress(key);
+}
+public void mouseClicked(char e){
+  states.get(state).sendMouseClick(e);
+}
+public void mouseDragged(char e){
+  states.get(state).sendMouseDragged(e);
+}
+public void mouseMoved(char e){
+  states.get(state).sendMouseMoved(e);
+}
+public void mouseReleased(char e){
+  states.get(state).sendMouseReleased(e);
+}
+public void mouseWheel(char e){
+  states.get(state).sendMouseWheel(e);
+}
+public void mousePressed(char e){
+  states.get(state).sendMousePressed(e);
+}
+public void keyReleased(char e){
+  states.get(state).sendKeyReleased(e);
+}
+public void keyTyped(char e){
+  states.get(state).sendKeyTyped(e);
+}
+
+public void controlEvent(ControlEvent theEvent) {
+  states.get(state).sendEvent(theEvent.getController().getName());
+}
+
 static void setState(String newState){
   /* Use to change the state */
   //Finish old state
@@ -39,14 +80,6 @@ static void setState(String newState){
   states.get(newState).begin();
   //Change state
   state = newState;
-}
-
-public void keyPressed(){
-  states.get(state).sendKeyPress(key);
-}
-
-public void controlEvent(ControlEvent theEvent) {
-  states.get(state).sendEvent(theEvent.getController().getName());
 }
 
 void draw(){
