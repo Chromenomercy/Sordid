@@ -3,7 +3,6 @@
 public class Game extends State{
   FWorld world;
   Game(){
-    name = "game";
     Fisica.setScale(100);
     world = new FWorld();
     FCompound player = new FCompound();

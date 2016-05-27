@@ -35,6 +35,7 @@ void setup(){
   
   //States
   states.put("menu", new Menu());
+  states.put("game", new Game());
   setState("menu");
   
 }
