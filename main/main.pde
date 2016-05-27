@@ -42,6 +42,7 @@ void setup(){
 
 //Event handling
 public void keyPressed(){
+  if (key==27) key=0;
   states.get(state).sendKeyPress(key);
 }
 public void mouseClicked(char e){
