@@ -14,14 +14,14 @@ class State{
   public void finish(){}
   public void sendEvent(String e){}
   public void sendKeyPress(char k){}
-  public void sendMouseClick(char e){}
-  public void sendMouseDragged(char e){}
-  public void sendMouseMoved(char e){}
-  public void sendMouseReleased(char e){}
-  public void sendMouseWheel(char e){}
-  public void sendMousePressed(char e){}
-  public void sendKeyReleased(char e){}
-  public void sendKeyTyped(char e){}
+  public void sendMouseClick(MouseEvent e){}
+  public void sendMouseDragged(MouseEvent e){}
+  public void sendMouseMoved(MouseEvent e){}
+  public void sendMouseReleased(MouseEvent e){}
+  public void sendMouseWheel(MouseEvent e){}
+  public void sendMousePressed(MouseEvent e){}
+  public void sendKeyReleased(KeyEvent e){}
+  public void sendKeyTyped(KeyEvent e){}
 }
 
 void setup(){
@@ -43,31 +43,31 @@ void setup(){
 
 //Event handling
 public void keyPressed(){
-  if (key==27) key=0;
+  //if (key==27) key=0;
   states.get(state).sendKeyPress(key);
 }
-public void mouseClicked(char e){
+public void mouseClicked(MouseEvent e){
   states.get(state).sendMouseClick(e);
 }
-public void mouseDragged(char e){
+public void mouseDragged(MouseEvent e){
   states.get(state).sendMouseDragged(e);
 }
-public void mouseMoved(char e){
+public void mouseMoved(MouseEvent e){
   states.get(state).sendMouseMoved(e);
 }
-public void mouseReleased(char e){
+public void mouseReleased(MouseEvent e){
   states.get(state).sendMouseReleased(e);
 }
-public void mouseWheel(char e){
+public void mouseWheel(MouseEvent e){
   states.get(state).sendMouseWheel(e);
 }
-public void mousePressed(char e){
+public void mousePressed(MouseEvent e){
   states.get(state).sendMousePressed(e);
 }
-public void keyReleased(char e){
+public void keyReleased(KeyEvent e){
   states.get(state).sendKeyReleased(e);
 }
-public void keyTyped(char e){
+public void keyTyped(KeyEvent e){
   states.get(state).sendKeyTyped(e);
 }
 
