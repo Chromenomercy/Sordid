@@ -65,7 +65,7 @@ public class Menu extends State {
       break;
     case "New Save":
       //TODO change this to state of game name
-      //main.setState("game");
+      main.setState("game");
       break;
     case "Settings":
       this.setState("settings");

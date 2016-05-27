@@ -25,6 +25,7 @@ class State{
 }
 
 void setup(){
+  Fisica.init(this);
   fullScreen();
   frameRate(60);
   
@@ -34,6 +35,7 @@ void setup(){
   
   //States
   states.put("menu", new Menu());
+  states.put("game", new Game());
   setState("menu");
   
 }
