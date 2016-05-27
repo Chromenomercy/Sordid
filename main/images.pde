@@ -11,3 +11,8 @@ PImage getImage(String fileName){
   PImage i = this.images.get(fileName);
   return i;
 }
+
+
+
+
+private HashMap<String, List<PImage>> animations = new HashMap<String, List<PImage>>();

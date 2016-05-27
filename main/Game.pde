@@ -17,7 +17,7 @@ public class Game extends State{
     FBox armR = new FBox(6, 25);
     armR.setPosition(0, -18);
     armR.setFill(0);
-    FBox legL = new FBox(6, 25);
+    FBox legL = new FBox(10, 25);
     legL.setPosition(0, 32);
     legL.setFill(0);
     FBox legR = new FBox(6, 25);
