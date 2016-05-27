@@ -19,7 +19,6 @@ public class Menu extends State {
     switch (s){
     case "main":
       if(visible){
-        print(2);
         cp5.getController("New Save").show();
         cp5.getController("Load Save").show();
         cp5.getController("Settings").show();
@@ -65,7 +64,8 @@ public class Menu extends State {
       exit();
       break;
     case "New Save":
-      main.setState("game");
+      //TODO change this to state of game name
+      //main.setState("game");
       break;
     case "Settings":
       this.setState("settings");
