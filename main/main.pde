@@ -3,9 +3,9 @@ import fisica.*;
 import java.util.Dictionary;
 
 ControlP5 cp5;
-HashMap<String, State> states = new HashMap<String, State>();
+static HashMap<String, State> states = new HashMap<String, State>();
 //Use setState
-String state = "menu";
+static String state = "menu";
 
 class State{
   /* Base class for states to extend */
@@ -13,6 +13,7 @@ class State{
   public void begin(){}
   public void finish(){}
   public void sendEvent(String e){}
+  public void sendKeyPress(char k){}
 }
 
 void setup(){
@@ -29,7 +30,7 @@ void setup(){
   
 }
 
-void setState(String newState){
+static void setState(String newState){
   /* Use to change the state */
   //Finish old state
   states.get(state).finish();
@@ -37,6 +38,10 @@ void setState(String newState){
   states.get(newState).begin();
   //Change state
   state = newState;
+}
+
+public void keyPressed(){
+  states.get(state).sendKeyPress(key);
 }
 
 public void controlEvent(ControlEvent theEvent) {
