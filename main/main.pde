@@ -4,7 +4,7 @@ import fisica.*;
 ControlP5 cp5;
 ArrayList<State> states = new ArrayList();
 //Use setState
-String state = "menu";
+String state = "game";
 
 class State{
   /* Base class for states to extend */
@@ -15,6 +15,7 @@ class State{
 }
 
 void setup(){
+  Fisica.init(this);
   fullScreen();
   frameRate(60);
   
@@ -24,6 +25,7 @@ void setup(){
   
   //States
   states.add(new Menu());
+  states.add(new Game());
   
 }
 

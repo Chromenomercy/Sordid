@@ -6,20 +6,38 @@ public class Game extends State{
     name = "game";
     Fisica.setScale(100);
     world = new FWorld();
-    world.setGravity(0, -100);
-    for (int i=0;i<16;i++){
-      for (int j=0;j<16;j++){
-        FCircle head = new FCircle(16);
-        head.setPosition(16+i*width/16,16+j*height/16);
-        head.setFillColor(color(random(255), random(255), random(255)));
-        head.setRestitution(1);
-        head.setFriction(0);
-        world.add(head);
-      }
-    }
+    FCompound player = new FCompound();
+    FCircle head = new FCircle(32);
+    head.setPosition(0, -34);
+    FBox body = new FBox(6, 50);
+    body.setPosition(0, -18);
+    body.setFill(0);
+    FBox armL = new FBox(6, 25);
+    armL.setPosition(0, -18);
+    armL.setFill(0);
+    FBox armR = new FBox(6, 25);
+    armR.setPosition(0, -18);
+    armR.setFill(0);
+    FBox legL = new FBox(6, 25);
+    legL.setPosition(0, 32);
+    legL.setFill(0);
+    FBox legR = new FBox(6, 25);
+    legR.setPosition(0, 32);
+    legR.setFill(0);
+    player.addBody(armL);
+    player.addBody(armR);
+    player.addBody(legL);
+    player.addBody(legR);
+    player.addBody(body);
+    player.addBody(head);
+    player.setPosition(width/2, height-300);
+    player.setRotatable(false);
+    FBox ground = new FBox(width, 100);
+    ground.setPosition(width/2, height-150);
+    ground.setStatic(true);
+    world.add(ground);
+    world.add(player);
     world.setEdges();
-    world.setEdgesFriction(0);
-    world.setEdgesRestitution(1);
   }
   public void update(){
     background(255);
