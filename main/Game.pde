@@ -2,33 +2,21 @@
 
 public class Game extends State{
   FWorld world;
+  Animation currentAnimation;
+  int counter;
+  FBox player;
+  PImage test;
+  int W = 75;
+  int H = 150;
+  int lenX = 30;
+  int lenY = 1;
   Game(){
+    counter = 0;
+    addImage("sordSpriteSheet.png");
     Fisica.setScale(100);
     world = new FWorld();
-    FCompound player = new FCompound();
-    FCircle head = new FCircle(32);
-    head.setPosition(0, -34);
-    FBox body = new FBox(6, 50);
-    body.setPosition(0, -18);
-    body.setFill(0);
-    FBox armL = new FBox(6, 25);
-    armL.setPosition(0, -18);
-    armL.setFill(0);
-    FBox armR = new FBox(6, 25);
-    armR.setPosition(0, -18);
-    armR.setFill(0);
-    FBox legL = new FBox(10, 25);
-    legL.setPosition(0, 32);
-    legL.setFill(0);
-    FBox legR = new FBox(6, 25);
-    legR.setPosition(0, 32);
-    legR.setFill(0);
-    player.addBody(armL);
-    player.addBody(armR);
-    player.addBody(legL);
-    player.addBody(legR);
-    player.addBody(body);
-    player.addBody(head);
+    player = new FBox(75, 150);
+    player.attachImage(getImage("sordSpriteSheet.png").get(0, 0, W, H));
     player.setPosition(width/2, height-300);
     player.setRotatable(false);
     FBox ground = new FBox(width, 100);
@@ -42,5 +30,12 @@ public class Game extends State{
     background(255);
     world.step();
     world.draw();
+    int fi = frameCount/2; // starting cell based on number in the for loop, animation based on frameCount
+    int x = fi%lenX*W; // get the x texture coordinate of the cell
+    int y = fi/lenY%lenY*H; // get the y texture coordinate of the cell
+    player.dettachImage();
+    player.attachImage(getImage("sordSpriteSheet.png").get(x, y, W, H));
+    
+    
   }
 }

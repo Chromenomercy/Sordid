@@ -3,6 +3,7 @@ import org.dishevelled.processing.frames.*;
 import controlP5.*;
 import fisica.*;
 import java.util.Dictionary;
+import java.util.List;
 
 ControlP5 cp5;
 static HashMap<String, State> states = new HashMap<String, State>();
@@ -26,7 +27,10 @@ class State{
   public void sendKeyTyped(KeyEvent e){}
 }
 
+Frames frames;
+
 void setup(){
+  frames = new Frames(this);
   Fisica.init(this);
   fullScreen();
   frameRate(60);

@@ -6,13 +6,12 @@ void addImage(String fileName, int w, int h){
   i.resize(w, h);
   this.images.put(fileName, i);
 }
+void addImage(String fileName){
+  PImage i = loadImage(fileName);
+  this.images.put(fileName, i);
+}
 
 PImage getImage(String fileName){
   PImage i = this.images.get(fileName);
   return i;
 }
-
-
-
-
-private HashMap<String, List<PImage>> animations = new HashMap<String, List<PImage>>();
