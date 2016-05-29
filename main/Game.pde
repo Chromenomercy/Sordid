@@ -8,7 +8,7 @@ public class Game extends State{
   PImage test;
   int W = 75;
   int H = 150;
-  int lenX = 30;
+  int lenX = 60;
   int lenY = 1;
   Game(){
     counter = 0;
@@ -30,7 +30,7 @@ public class Game extends State{
     background(255);
     world.step();
     world.draw();
-    int fi = frameCount/2; // starting cell based on number in the for loop, animation based on frameCount
+    int fi = frameCount; // starting cell based on number in the for loop, animation based on frameCount
     int x = fi%lenX*W; // get the x texture coordinate of the cell
     int y = fi/lenY%lenY*H; // get the y texture coordinate of the cell
     player.dettachImage();
