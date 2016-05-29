@@ -62,6 +62,7 @@ class LevelEditor extends State{
       fill(0);
       textureWrap(REPEAT);
       beginShape();
+      println(texture, rect.get(4));
       texture(getImage(texture));
       vertex((int)rect.get(0), (int)rect.get(1), 0, 0);
       vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1), (int)rect.get(2), 0);

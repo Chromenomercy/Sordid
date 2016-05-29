@@ -22,7 +22,6 @@ String getAllFileText(){
       break;
     }
   }
-  print(existingData);
   return existingData;
 }
 
