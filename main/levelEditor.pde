@@ -3,8 +3,12 @@ ArrayList<ArrayList> editorRects = new ArrayList<ArrayList>();
 
 void setMapName(String n){
   mapName = n;
-  loadMap(n);
-  print(n);
+  editorRects = loadMap(n);
+  for(ArrayList e:editorRects){
+    for(Object j:e){
+      //print(j);
+    }
+  }
 }
 
 class LevelEditor extends State{
@@ -29,6 +33,8 @@ class LevelEditor extends State{
   }
   public void finish(){
     hideButtons();
+    saveMap(mapName, editorRects);
+    editorRects = new ArrayList<ArrayList>();
   }
   
   void hideButtons(){

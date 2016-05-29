@@ -64,6 +64,7 @@ public class Menu extends State {
   public void sendEvent(String e){
     switch(e){
     case "Exit":
+      
       exit();
       break;
     case "New Save":

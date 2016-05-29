@@ -46,7 +46,10 @@ void setup(){
 
 //Event handling
 public void keyPressed(){
-  //if (key==27) key=0;
+  if (key==27){
+    key=0;
+    setState("menu");
+  }
   states.get(state).sendKeyPress(key);
 }
 public void mouseClicked(MouseEvent e){
