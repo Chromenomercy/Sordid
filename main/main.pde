@@ -1,4 +1,3 @@
-import org.dishevelled.processing.frames.*;
 
 import controlP5.*;
 import fisica.*;
@@ -27,10 +26,8 @@ class State{
   public void sendKeyTyped(KeyEvent e){}
 }
 
-Frames frames;
 
 void setup(){
-  frames = new Frames(this);
   Fisica.init(this);
   fullScreen();
   frameRate(60);
