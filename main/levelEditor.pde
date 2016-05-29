@@ -17,7 +17,6 @@ class LevelEditor extends State{
       rect(min(xEnd, xStart), min(yEnd, yStart), wi, hi);
     }
     for (ArrayList rect:rects){
-      print(rect.get(0));
       fill(0);
       rect(int(rect.get(0).toString()), int(rect.get(1).toString()), int(rect.get(2).toString()), int(rect.get(3).toString()));
     }
