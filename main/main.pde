@@ -31,6 +31,7 @@ void setup(){
   Fisica.init(this);
   fullScreen();
   frameRate(60);
+  initTextures();
   
   //Adds frame rate indicator to top right
   cp5 = new ControlP5(this);
