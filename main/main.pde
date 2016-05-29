@@ -3,6 +3,8 @@ import controlP5.*;
 import fisica.*;
 import java.util.Dictionary;
 import java.util.List;
+import java.util.Iterator;
+import java.util.*;
 
 ControlP5 cp5;
 static HashMap<String, State> states = new HashMap<String, State>();
