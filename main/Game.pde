@@ -2,7 +2,6 @@
 
 public class Game extends State{
   FWorld world;
-  Animation currentAnimation;
   int counter;
   FBox player;
   PImage test;
