@@ -62,15 +62,17 @@ class LevelEditor extends State{
       fill(0);
       textureWrap(REPEAT);
       beginShape();
-      println(texture, rect.get(4));
-      texture(getImage(texture));
-      vertex((int)rect.get(0), (int)rect.get(1), 0, 0);
-      vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1), (int)rect.get(2), 0);
-      vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1)+(int)rect.get(3), (int)rect.get(2), (int)rect.get(3));
-      vertex((int)rect.get(0), (int)rect.get(1)+(int)rect.get(3), 0, (int)rect.get(3));
-      endShape();
+      Object t = rect.get(4);
+      if (t != null){
+        String t2 = t.toString();
+        texture(getImage(t2));
+        vertex((int)rect.get(0), (int)rect.get(1), 0, 0);
+        vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1), (int)rect.get(2), 0);
+        vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1)+(int)rect.get(3), (int)rect.get(2), (int)rect.get(3));
+        vertex((int)rect.get(0), (int)rect.get(1)+(int)rect.get(3), 0, (int)rect.get(3));
+        endShape();
+      }
     }
-    displayImage("basalt", 0, 0);
   }
   public void sendMousePressed(MouseEvent e){
     xStart = e.getX();
