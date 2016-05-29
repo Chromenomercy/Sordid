@@ -1,7 +1,14 @@
+String mapName;
+ArrayList<ArrayList> editorRects = new ArrayList<ArrayList>();
+
+void setMapName(String n){
+  mapName = n;
+  loadMap(n);
+  print(n);
+}
 
 class LevelEditor extends State{
   int xStart, yStart, xEnd, yEnd, wi, hi;
-  ArrayList<ArrayList> rects = new ArrayList();
   String texture;
   final int buttonW = int(width*0.1);
   final int buttonH = int(height*0.05);
@@ -45,7 +52,7 @@ class LevelEditor extends State{
       fill(120, 120, 120, 100);
       rect(min(xEnd, xStart), min(yEnd, yStart), wi, hi);
     }
-    for (ArrayList rect:rects){
+    for (ArrayList rect:editorRects){
       fill(0);
       rect(int(rect.get(0).toString()), int(rect.get(1).toString()), int(rect.get(2).toString()), int(rect.get(3).toString()));
     }
@@ -57,7 +64,7 @@ class LevelEditor extends State{
   public void sendMouseClick(MouseEvent e){
     if (e.getButton() == 39){
       ArrayList toBeDeld = new ArrayList();
-      for (Iterator<ArrayList> r = rects.iterator(); r.hasNext();){
+      for (Iterator<ArrayList> r = editorRects.iterator(); r.hasNext();){
         ArrayList rect = r.next();
         if (e.getX() > int(rect.get(0).toString()) && e.getX() < int(rect.get(0).toString()) + int(rect.get(2).toString())){
           if (e.getY() > int(rect.get(1).toString()) && e.getY() < int(rect.get(1).toString()) + int(rect.get(3).toString())){
@@ -66,7 +73,7 @@ class LevelEditor extends State{
         }
       }
       for (Object r:toBeDeld){
-        rects.remove(r);
+        editorRects.remove(r);
       }
     }
   }
@@ -83,7 +90,7 @@ class LevelEditor extends State{
       newRect.add(wi);
       newRect.add(hi);
       newRect.add(texture);
-      rects.add(newRect);
+      editorRects.add(newRect);
     }
   }
   public void sendMouseDragged(MouseEvent e){
@@ -92,15 +99,43 @@ class LevelEditor extends State{
 }
 
 class LevelEditorLoader extends State{
+  final int buttonW = int(width*0.15);
+  final int buttonH = int(height*0.05);
+  final int buttonCX = int(width*0.5);
+  final int buttonGap = int(height*0.01);
   String state;
   LevelEditorLoader(){
-    cp5.addButton("New");
+    cp5.addButton("New").setPosition(buttonCX - buttonW/2, buttonH).setSize(buttonW, buttonH);
     hideButton("New");
+    cp5.addButton("Go").setPosition(buttonCX - buttonW/2, buttonH).setSize(buttonW, buttonH);
+    hideButton("Go");
+    cp5.addTextfield("Map Name").setPosition(buttonCX - buttonW/2, buttonH*2 + buttonGap*1).setSize(buttonW, buttonH);
+    hideButton("Map Name");
+  }
+  void hideButton(String b){
+    cp5.getController(b).hide();
+  }
+  void showButton(String b){
+    cp5.getController(b).show();
+  }
+  public void begin(){
+    showButton("New");
+  }
+  public void update(){
+    image(getImage("menuBackground.png"), 0, 0);
   }
   public void sendEvent(String e){
     switch(e){
     case "New":
-      
+      hideButton("New");
+      showButton("Map Name");
+      showButton("Go");
+      break;
+    case "Go":
+      hideButton("Go");
+      hideButton("Map Name");
+      setState("level editor");
+      setMapName(cp5.get(Textfield.class, "Map Name").getText());
       break;
     }
   }

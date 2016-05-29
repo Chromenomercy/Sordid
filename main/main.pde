@@ -1,9 +1,6 @@
 
 import controlP5.*;
 import fisica.*;
-import java.util.Dictionary;
-import java.util.List;
-import java.util.Iterator;
 import java.util.*;
 
 ControlP5 cp5;
@@ -26,13 +23,6 @@ class State{
   public void sendMousePressed(MouseEvent e){}
   public void sendKeyReleased(KeyEvent e){}
   public void sendKeyTyped(KeyEvent e){}
-}
-
-void hideButton(String b){
-  cp5.getController(b).hide();
-}
-void showButton(String b){
-  cp5.getController(b).hide();
 }
 
 void setup(){
