@@ -78,7 +78,7 @@ public class Menu extends State {
       this.setState("main");
       break;
     case "Level Editor":
-      main.setState("level editor");
+      main.setState("level editor loader");
       ajustVisibleButtons(state, false);
       break;
     }

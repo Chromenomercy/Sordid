@@ -28,6 +28,12 @@ class State{
   public void sendKeyTyped(KeyEvent e){}
 }
 
+void hideButton(String b){
+  cp5.getController(b).hide();
+}
+void showButton(String b){
+  cp5.getController(b).hide();
+}
 
 void setup(){
   Fisica.init(this);
@@ -43,6 +49,7 @@ void setup(){
   states.put("menu", new Menu());
   states.put("game", new Game());
   states.put("level editor", new LevelEditor());
+  states.put("level editor loader", new LevelEditorLoader());
   setState("menu");
   
 }

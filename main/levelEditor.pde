@@ -70,6 +70,11 @@ class LevelEditor extends State{
       }
     }
   }
+  
+  public void sendEvent(String e){
+    if (textureMapping.containsKey(e))
+      texture = e;
+  }
   public void sendMouseReleased(MouseEvent e){
     if(e.getButton() == 37){
       ArrayList newRect = new ArrayList();
@@ -83,5 +88,20 @@ class LevelEditor extends State{
   }
   public void sendMouseDragged(MouseEvent e){
     
+  }
+}
+
+class LevelEditorLoader extends State{
+  String state;
+  LevelEditorLoader(){
+    cp5.addButton("New");
+    hideButton("New");
+  }
+  public void sendEvent(String e){
+    switch(e){
+    case "New":
+      
+      break;
+    }
   }
 }
