@@ -15,7 +15,7 @@ public class Game extends State{
     Fisica.setScale(100);
     world = new FWorld();
     player = new FBox(75, 150);
-    player.attachImage(getImage("sordSpriteSheet.png").get(0, 0, W, H));
+    player.attachImage(getImage("sordSpriteSheet").get(0, 0, W, H));
     player.setPosition(width/2, height-300);
     player.setRotatable(false);
     FBox ground = new FBox(width, 100);
@@ -33,7 +33,7 @@ public class Game extends State{
     int x = fi%lenX*W; // get the x texture coordinate of the cell
     int y = fi/lenY%lenY*H; // get the y texture coordinate of the cell
     player.dettachImage();
-    player.attachImage(getImage("sordSpriteSheet.png").get(x, y, W, H));
+    player.attachImage(getImage("sordSpriteSheet").get(x, y, W, H));
     
     
   }

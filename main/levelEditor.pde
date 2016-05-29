@@ -18,7 +18,7 @@ class LevelEditor extends State{
   LevelEditor(){
     // Add buttons
     int i = 0;
-    for (String t:textureMapping.keySet()){
+    for (String t:blockNames){
       i++;
       cp5.addButton(t).setPosition(buttonCX - buttonW/2, buttonH * i + buttonGap * i).setSize(buttonW, buttonH);
     }
@@ -32,12 +32,12 @@ class LevelEditor extends State{
   }
   
   void hideButtons(){
-    for (String t:textureMapping.keySet()){
+    for (String t:blockNames){
       cp5.getController(t).hide();
     }
   }
   void showButtons(){
-    for (String t:textureMapping.keySet()){
+    for (String t:blockNames){
       cp5.getController(t).show();
     }
   }
@@ -54,8 +54,16 @@ class LevelEditor extends State{
     }
     for (ArrayList rect:editorRects){
       fill(0);
-      rect(int(rect.get(0).toString()), int(rect.get(1).toString()), int(rect.get(2).toString()), int(rect.get(3).toString()));
+      textureWrap(REPEAT);
+      beginShape();
+      texture(getImage(texture));
+      vertex((int)rect.get(0), (int)rect.get(1), 0, 0);
+      vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1), (int)rect.get(2), 0);
+      vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1)+(int)rect.get(3), (int)rect.get(2), (int)rect.get(3));
+      vertex((int)rect.get(0), (int)rect.get(1)+(int)rect.get(3), 0, (int)rect.get(3));
+      endShape();
     }
+    displayImage("basalt", 0, 0);
   }
   public void sendMousePressed(MouseEvent e){
     xStart = e.getX();
@@ -79,7 +87,7 @@ class LevelEditor extends State{
   }
   
   public void sendEvent(String e){
-    if (textureMapping.containsKey(e))
+    if (blockNames.contains(e))
       texture = e;
   }
   public void sendMouseReleased(MouseEvent e){
@@ -122,7 +130,7 @@ class LevelEditorLoader extends State{
     showButton("New");
   }
   public void update(){
-    image(getImage("menuBackground.png"), 0, 0);
+    image(getImage("menuBackground"), 0, 0);
   }
   public void sendEvent(String e){
     switch(e){

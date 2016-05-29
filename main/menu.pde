@@ -85,6 +85,6 @@ public class Menu extends State {
   }
   
   public void update() {
-    image(getImage("menuBackground.png"), 0, 0);
+    displayImage("menuBackground", 0, 0);
   }
 }
