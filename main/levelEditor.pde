@@ -2,6 +2,9 @@ String mapName;
 ArrayList<ArrayList> editorRects = new ArrayList<ArrayList>();
 
 void setMapName(String n){
+  if (n.equals("")){
+    n = "_";
+  }
   mapName = n;
   editorRects = loadMap(n);
 }
@@ -21,6 +24,7 @@ class LevelEditor extends State{
       i++;
       cp5.addButton(t).setPosition(buttonCX - buttonW/2, buttonH * i + buttonGap * i).setSize(buttonW, buttonH);
     }
+    cp5.addButton("Export Save").setSize(buttonW, buttonH).setPosition(width-buttonW, buttonH);
     hideButtons();
   }
   public void begin(){
@@ -41,11 +45,13 @@ class LevelEditor extends State{
     for (String t:blockNames){
       cp5.getController(t).hide();
     }
+    cp5.getController("Export Save").hide();
   }
   void showButtons(){
     for (String t:blockNames){
       cp5.getController(t).show();
     }
+    cp5.getController("Export Save").show();
   }
   
   public void update(){
@@ -108,6 +114,9 @@ class LevelEditor extends State{
   public void sendEvent(String e){
     if (blockNames.contains(e))
       texture = e;
+    if (e == "Export Save"){
+      exportMap(mapName, editorRects);
+    }
   }
   public void sendMouseReleased(MouseEvent e){
     if(e.getButton() == 37 && (xEnd!=xStart||yEnd!=yStart)){

@@ -1,6 +1,4 @@
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.*;
 
 BufferedReader reader;
 String fileName = "maps.txt";
@@ -37,6 +35,41 @@ void saveMap(String n, ArrayList<ArrayList> m) {
   output.print(existingData);
   output.flush();
   output.close();
+}
+
+void exportMap(String n, ArrayList<ArrayList> m) {
+  PrintWriter output = createWriter("data/coreMaps/"+n);
+  for (ArrayList r:m){
+    if (!r.get(2).toString().equals("0") && !r.get(3).toString().equals("0")){
+      output.println(r.get(0).toString()+","+r.get(1).toString()+","+r.get(2).toString()+","+r.get(3).toString()+","+r.get(4));
+    }
+  }
+  output.flush();
+  output.close();
+  
+  FileWriter iOut = null;
+  File f = new File("data/mapIndex.txt");
+  if (!f.exists()){
+    createWriter("data/mapIndex.txt");
+  }
+  try {
+    iOut = new FileWriter(dataPath("mapIndex.txt"), true); //the true will append the new data
+    iOut.write(n+"\n");
+  }
+  catch (IOException e) {
+    println("It Broke");
+    e.printStackTrace();
+  }
+  finally {
+    if (iOut != null) {
+      try {
+        iOut.close();
+      } catch (IOException e) {
+        println("Error while closing the writer");
+      }
+    }
+  }
+  
 }
 
 ArrayList<ArrayList> getMap() {
