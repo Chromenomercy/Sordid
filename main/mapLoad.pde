@@ -25,6 +25,26 @@ String getAllFileText(){
   return existingData;
 }
 
+ArrayList<String> getMapNames(){
+  String line = "";
+  ArrayList<String> mapNames = new ArrayList<String>();
+  reader = createReader(fileName);
+  do {
+    try {
+      line = reader.readLine();
+      if (line.substring(0, 2).equals("//")) {
+        mapNames.add(line.substring(2));
+      }
+    }
+    catch(IOException e) {
+      return mapNames;
+    }
+    catch(NullPointerException e) {
+      break;
+    }
+  } while (line != null);
+  return mapNames;
+}
 void saveMap(String n, ArrayList<ArrayList> m) {
   String existingData = getAllFileText();
   PrintWriter output = createWriter("data/maps.txt");

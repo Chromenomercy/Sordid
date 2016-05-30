@@ -35,6 +35,7 @@ class LevelEditor extends State{
     hideButtons();
     saveMap(mapName, editorRects);
     editorRects = new ArrayList<ArrayList>();
+    print(getMapNames());
   }
   
   void hideButtons(){
