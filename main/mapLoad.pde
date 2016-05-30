@@ -33,10 +33,13 @@ ArrayList<String> getMapNames(){
     try {
       line = reader.readLine();
       if (line.substring(0, 2).equals("//")) {
-        mapNames.add(line.substring(2));
+        if (line.length() > 2){
+          mapNames.add(line.substring(2));
+        }
       }
     }
     catch(IOException e) {
+      print(mapNames);
       return mapNames;
     }
     catch(NullPointerException e) {

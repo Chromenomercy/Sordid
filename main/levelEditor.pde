@@ -35,7 +35,6 @@ class LevelEditor extends State{
     hideButtons();
     saveMap(mapName, editorRects);
     editorRects = new ArrayList<ArrayList>();
-    print(getMapNames());
   }
   
   void hideButtons(){
@@ -144,6 +143,7 @@ class LevelEditorLoader extends State{
   final int buttonH = int(height*0.05);
   final int buttonCX = int(width*0.5);
   final int buttonGap = int(height*0.01);
+  ArrayList <String> oldMapNames = getMapNames();
   String state;
   LevelEditorLoader(){
     cp5.addButton("New").setPosition(buttonCX - buttonW/2, buttonH).setSize(buttonW, buttonH);
@@ -153,6 +153,33 @@ class LevelEditorLoader extends State{
     cp5.addTextfield("Map Name").setPosition(buttonCX - buttonW/2, buttonH*2 + buttonGap*1).setSize(buttonW, buttonH);
     hideButton("Map Name");
   }
+  void loadMapNameButtons(){
+    ArrayList <String> mapNames = getMapNames();
+    int i = 0;
+    for (String mapName:oldMapNames){
+      cp5.remove(cp5.getController(mapName));
+    }
+    ArrayList <String> newMapNames = new ArrayList <String>();
+    for (String mapName:mapNames){
+      if (!newMapNames.contains(mapName)){
+        i++;
+        newMapNames.add(mapName);
+        cp5.addButton(mapName).setPosition(buttonCX-buttonW/2, (i + 1)*buttonGap + (i + 1)*buttonH).setSize(buttonW, buttonH);
+        cp5.getController(mapName).hide();
+      }
+    }
+    oldMapNames = mapNames;
+  }
+  void showMapNameButtons(){
+    for (String mapName:oldMapNames){
+      cp5.getController(mapName).show();
+    }
+  }
+  void hideMapNameButtons(){
+    for (String mapName:oldMapNames){
+      cp5.getController(mapName).hide();
+    }
+  }
   void hideButton(String b){
     cp5.getController(b).hide();
   }
@@ -161,11 +188,14 @@ class LevelEditorLoader extends State{
   }
   public void begin(){
     showButton("New");
+    loadMapNameButtons();
+    showMapNameButtons();
   }
   public void finish(){
     hideButton("Go");
     hideButton("Map Name");
     hideButton("New");
+    hideMapNameButtons();
   }
   public void update(){
     image(getImage("menuBackground"), 0, 0);
@@ -176,6 +206,7 @@ class LevelEditorLoader extends State{
       hideButton("New");
       showButton("Map Name");
       showButton("Go");
+      hideMapNameButtons();
       break;
     case "Go":
       hideButton("Go");
@@ -183,6 +214,11 @@ class LevelEditorLoader extends State{
       setState("level editor");
       setMapName(cp5.get(Textfield.class, "Map Name").getText());
       break;
+    }
+    if (oldMapNames.contains(e)){
+      setMapName(e);
+      setState("level editor");
+      hideMapNameButtons();
     }
   }
 }
