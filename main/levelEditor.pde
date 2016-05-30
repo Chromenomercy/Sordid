@@ -65,14 +65,14 @@ class LevelEditor extends State{
         endShape();
       }
     }
-    if (mouseButton == LEFT){
+    if (mousePressed && mouseButton == LEFT){
       xEnd = mouseX;
       yEnd = mouseY;
       wi = Math.abs(xEnd-xStart);
       hi = Math.abs(yEnd-yStart);
       fill(120, 120, 120, 100);
       rect(min(xEnd, xStart), min(yEnd, yStart), wi, hi);
-    } else if (mouseButton == RIGHT){
+    } else if (mousePressed && mouseButton == RIGHT){
       xEnd = mouseX;
       yEnd = mouseY;
       wi = Math.abs(xEnd-xStart);
@@ -160,6 +160,11 @@ class LevelEditorLoader extends State{
   }
   public void begin(){
     showButton("New");
+  }
+  public void finish(){
+    hideButton("Go");
+    hideButton("Map Name");
+    hideButton("New");
   }
   public void update(){
     image(getImage("menuBackground"), 0, 0);
