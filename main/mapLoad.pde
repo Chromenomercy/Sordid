@@ -70,28 +70,31 @@ void exportMap(String n, ArrayList<ArrayList> m) {
   output.flush();
   output.close();
   
-  FileWriter iOut = null;
-  File f = new File("data/mapIndex.txt");
-  if (!f.exists()){
-    createWriter("data/mapIndex.txt");
-  }
-  try {
-    iOut = new FileWriter(dataPath("mapIndex.txt"), true); //the true will append the new data
-    iOut.write(n+"\n");
-  }
-  catch (IOException e) {
-    println("It Broke");
-    e.printStackTrace();
-  }
-  finally {
-    if (iOut != null) {
-      try {
-        iOut.close();
-      } catch (IOException e) {
-        println("Error while closing the writer");
-      }
+  
+  Collection<String> existingData = new LinkedHashSet<String>();
+  String ln = "";
+  reader = createReader("data/mapIndex.txt");
+  while (true) {
+    try {
+      ln = reader.readLine();
+      if (ln.equals(null))break;
+      existingData.add(ln);
+    }
+    catch(IOException e) {
+      break;
+    }
+    catch(NullPointerException e) {
+      break;
     }
   }
+  existingData.add(n);
+  output = createWriter("data/mapIndex.txt");
+  Iterator itr = existingData.iterator();
+  while(itr.hasNext()){
+    output.println(itr.next());
+  }
+  output.flush();
+  output.close();
   
 }
 
