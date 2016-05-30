@@ -4,11 +4,6 @@ ArrayList<ArrayList> editorRects = new ArrayList<ArrayList>();
 void setMapName(String n){
   mapName = n;
   editorRects = loadMap(n);
-  for(ArrayList e:editorRects){
-    for(Object j:e){
-      //print(j);
-    }
-  }
 }
 
 class LevelEditor extends State{
@@ -83,11 +78,12 @@ class LevelEditor extends State{
   public void sendMouseClick(MouseEvent e){
     if (e.getButton() == 39){
       ArrayList toBeDeld = new ArrayList();
-      for (Iterator<ArrayList> r = editorRects.iterator(); r.hasNext();){
-        ArrayList rect = r.next();
+      for (ListIterator<ArrayList> r = editorRects.listIterator(editorRects.size()); r.hasPrevious();){
+        ArrayList rect = r.previous();
         if (e.getX() > int(rect.get(0).toString()) && e.getX() < int(rect.get(0).toString()) + int(rect.get(2).toString())){
           if (e.getY() > int(rect.get(1).toString()) && e.getY() < int(rect.get(1).toString()) + int(rect.get(3).toString())){
             toBeDeld.add(rect);
+            break;
           }
         }
       }
