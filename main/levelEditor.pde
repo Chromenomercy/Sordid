@@ -27,6 +27,9 @@ class LevelEditor extends State{
     showButtons();
     textureWrap(REPEAT);
     strokeWeight(2);
+    texture = blockNames.get(1);
+    xStart = mouseX;
+    yStart = mouseY;
   }
   public void finish(){
     hideButtons();
@@ -69,6 +72,15 @@ class LevelEditor extends State{
       hi = Math.abs(yEnd-yStart);
       fill(120, 120, 120, 100);
       rect(min(xEnd, xStart), min(yEnd, yStart), wi, hi);
+    } else if (mouseButton == RIGHT){
+      xEnd = mouseX;
+      yEnd = mouseY;
+      wi = Math.abs(xEnd-xStart);
+      hi = Math.abs(yEnd-yStart);
+      stroke(255, 0, 0);
+      fill(120, 0, 0, 100);
+      rect(min(xEnd, xStart), min(yEnd, yStart), wi, hi);
+      stroke(0, 0, 0);
     }
   }
   public void sendMousePressed(MouseEvent e){
@@ -98,7 +110,7 @@ class LevelEditor extends State{
       texture = e;
   }
   public void sendMouseReleased(MouseEvent e){
-    if(e.getButton() == 37){
+    if(e.getButton() == 37 && (xEnd!=xStart||yEnd!=yStart)){
       ArrayList newRect = new ArrayList();
       newRect.add(min(xEnd, xStart));
       newRect.add(min(yEnd, yStart));
@@ -106,6 +118,19 @@ class LevelEditor extends State{
       newRect.add(hi);
       newRect.add(texture);
       editorRects.add(newRect);
+    } else if (e.getButton() == 39){
+      ArrayList toBeDeld = new ArrayList();
+      for (ListIterator<ArrayList> r = editorRects.listIterator(editorRects.size()); r.hasPrevious();){
+        ArrayList rect = r.previous();
+        if (min(xStart, xEnd) <= int(rect.get(0).toString()) && max(xStart, xEnd) >= int(rect.get(0).toString()) + int(rect.get(2).toString())){
+          if (min(yStart, yEnd) <= int(rect.get(1).toString()) && max(yStart, yEnd) >= int(rect.get(1).toString()) + int(rect.get(3).toString())){
+            toBeDeld.add(rect);
+          }
+        }
+      }
+      for (Object r:toBeDeld){
+        editorRects.remove(r);
+      }
     }
   }
   public void sendMouseDragged(MouseEvent e){
