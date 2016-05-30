@@ -34,7 +34,7 @@ void saveMap(String n, ArrayList<ArrayList> m) {
       output.println(r.get(0).toString()+","+r.get(1).toString()+","+r.get(2).toString()+","+r.get(3).toString()+","+r.get(4));
     }
   }
-  output.println(existingData);
+  output.print(existingData);
   output.flush();
   output.close();
 }

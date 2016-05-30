@@ -2,6 +2,12 @@
 378,478,2,1,basalt
 540,294,2,1,sandStone
 541,292,1,3,sandStone
+607,47,709,47,null
+//car
+//
+378,478,2,1,basalt
+540,294,2,1,sandStone
+541,292,1,3,sandStone
 //
 378,478,2,1,basalt
 319,378,754,322,null
