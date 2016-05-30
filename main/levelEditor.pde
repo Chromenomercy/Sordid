@@ -16,6 +16,7 @@ class LevelEditor extends State{
   final int buttonH = int(height*0.05);
   final int buttonCX = int(width*0.1);
   final int buttonGap = int(width*0.01);
+  boolean pressed;
   
   LevelEditor(){
     // Add buttons
@@ -39,6 +40,7 @@ class LevelEditor extends State{
     hideButtons();
     saveMap(mapName, editorRects);
     editorRects = new ArrayList<ArrayList>();
+    pressed = false;
   }
   
   void hideButtons(){
@@ -92,6 +94,7 @@ class LevelEditor extends State{
   public void sendMousePressed(MouseEvent e){
     xStart = e.getX();
     yStart = e.getY();
+    pressed = true;
   }
   public void sendMouseClick(MouseEvent e){
     if (e.getButton() == 39){
@@ -119,26 +122,28 @@ class LevelEditor extends State{
     }
   }
   public void sendMouseReleased(MouseEvent e){
-    if(e.getButton() == 37 && (xEnd!=xStart||yEnd!=yStart)){
-      ArrayList newRect = new ArrayList();
-      newRect.add(min(xEnd, xStart));
-      newRect.add(min(yEnd, yStart));
-      newRect.add(wi);
-      newRect.add(hi);
-      newRect.add(texture);
-      editorRects.add(newRect);
-    } else if (e.getButton() == 39){
-      ArrayList toBeDeld = new ArrayList();
-      for (ListIterator<ArrayList> r = editorRects.listIterator(editorRects.size()); r.hasPrevious();){
-        ArrayList rect = r.previous();
-        if (min(xStart, xEnd) <= int(rect.get(0).toString()) && max(xStart, xEnd) >= int(rect.get(0).toString()) + int(rect.get(2).toString())){
-          if (min(yStart, yEnd) <= int(rect.get(1).toString()) && max(yStart, yEnd) >= int(rect.get(1).toString()) + int(rect.get(3).toString())){
-            toBeDeld.add(rect);
+    if (pressed){
+      if(e.getButton() == 37 && (xEnd!=xStart||yEnd!=yStart)){
+        ArrayList newRect = new ArrayList();
+        newRect.add(min(xEnd, xStart));
+        newRect.add(min(yEnd, yStart));
+        newRect.add(wi);
+        newRect.add(hi);
+        newRect.add(texture);
+        editorRects.add(newRect);
+      } else if (e.getButton() == 39){
+        ArrayList toBeDeld = new ArrayList();
+        for (ListIterator<ArrayList> r = editorRects.listIterator(editorRects.size()); r.hasPrevious();){
+          ArrayList rect = r.previous();
+          if (min(xStart, xEnd) <= int(rect.get(0).toString()) && max(xStart, xEnd) >= int(rect.get(0).toString()) + int(rect.get(2).toString())){
+            if (min(yStart, yEnd) <= int(rect.get(1).toString()) && max(yStart, yEnd) >= int(rect.get(1).toString()) + int(rect.get(3).toString())){
+              toBeDeld.add(rect);
+            }
           }
         }
-      }
-      for (Object r:toBeDeld){
-        editorRects.remove(r);
+        for (Object r:toBeDeld){
+          editorRects.remove(r);
+        }
       }
     }
   }
