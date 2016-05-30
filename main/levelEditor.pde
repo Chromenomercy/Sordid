@@ -30,6 +30,8 @@ class LevelEditor extends State{
   }
   public void begin(){
     showButtons();
+    textureWrap(REPEAT);
+    strokeWeight(2);
   }
   public void finish(){
     hideButtons();
@@ -50,6 +52,21 @@ class LevelEditor extends State{
   
   public void update(){
     background(120);
+    for (ArrayList rect:editorRects){
+      Object t = rect.get(4);
+      if (t != null){
+        String t2 = t.toString();
+        fill(0);
+        beginShape();
+        texture(getImage(t2));
+        vertex((int)rect.get(0), (int)rect.get(1), 0, 0);
+        vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1), (int)rect.get(2), 0);
+        vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1)+(int)rect.get(3), (int)rect.get(2), (int)rect.get(3));
+        vertex((int)rect.get(0), (int)rect.get(1)+(int)rect.get(3), 0, (int)rect.get(3));
+        vertex((int)rect.get(0), (int)rect.get(1), 0, 0);
+        endShape();
+      }
+    }
     if (mouseButton == LEFT){
       xEnd = mouseX;
       yEnd = mouseY;
@@ -57,21 +74,6 @@ class LevelEditor extends State{
       hi = Math.abs(yEnd-yStart);
       fill(120, 120, 120, 100);
       rect(min(xEnd, xStart), min(yEnd, yStart), wi, hi);
-    }
-    for (ArrayList rect:editorRects){
-      fill(0);
-      textureWrap(REPEAT);
-      beginShape();
-      Object t = rect.get(4);
-      if (t != null){
-        String t2 = t.toString();
-        texture(getImage(t2));
-        vertex((int)rect.get(0), (int)rect.get(1), 0, 0);
-        vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1), (int)rect.get(2), 0);
-        vertex((int)rect.get(0)+(int)rect.get(2), (int)rect.get(1)+(int)rect.get(3), (int)rect.get(2), (int)rect.get(3));
-        vertex((int)rect.get(0), (int)rect.get(1)+(int)rect.get(3), 0, (int)rect.get(3));
-        endShape();
-      }
     }
   }
   public void sendMousePressed(MouseEvent e){

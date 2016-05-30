@@ -26,9 +26,9 @@ public class Player{
       state = 0;
       animStart = frameCount;
     }
-    int fi = frameCount-animStart; // starting cell based on number in the for loop, animation based on frameCount
-    int x = fi%lenX*W; // get the x texture coordinate of the cell
-    int y = state*H; // get the y texture coordinate of the cell
+    int fi = frameCount-animStart;
+    int x = fi%lenX*W;
+    int y = state*H;
     player.dettachImage();
     player.attachImage(getImage("sordSpriteSheet").get(x, y, W, H));
     
