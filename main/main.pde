@@ -1,12 +1,15 @@
-
+import com.onformative.yahooweather.*;
 import controlP5.*;
 import fisica.*;
 import java.util.*;
+import processing.data.XML;
 
 ControlP5 cp5;
 static HashMap<String, State> states = new HashMap<String, State>();
 //Use setState
 static String state = "menu";
+
+YahooWeather weather;
 
 class State{
   /* Base class for states to extend */

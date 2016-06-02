@@ -5,6 +5,7 @@ public class Menu extends State {
   private final int buttonH = int(height*0.07);
   private final int buttonGap = int(height*0.05);
   private final int topButton = int(height*0.3);
+  private String currentWeather;
   
   Menu() {
     addImage("menuBackground.png", width, height);
@@ -87,5 +88,8 @@ public class Menu extends State {
   
   public void update() {
     displayImage("menuBackground", 0, 0);
+    
+    //weather stuff
+    currentWeather = getWeatherMain();
   }
 }
