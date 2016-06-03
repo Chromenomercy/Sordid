@@ -212,7 +212,7 @@ class LevelEditorLoader extends State{
     hideMapNameButtons();
   }
   public void update(){
-    displayMenuBackground(getWeatherMain());
+    displayMenuBackground(currentWeather);
   }
   public void sendEvent(String e){
     switch(e){

@@ -5,6 +5,27 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+//////////////
+
+public String currentWeather = "";
+public boolean weatherActive = true;
+
+public void setweatherActive(boolean a){
+  weatherActive = a;
+}
+public boolean getweatherActive(){
+  return weatherActive;
+}
+
+public void weatherThread(){
+  if (getweatherActive()){
+    currentWeather = getWeatherMain();
+  }
+  delay(10*1000);
+}
+
+////////////
+
 HttpURLConnection urlConnection;
 BufferedReader readerOWM;
 JSONObject jObj;

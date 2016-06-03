@@ -1,11 +1,11 @@
 
+
 public class Menu extends State {
   private String state = " ";
   private final int buttonW = int(width*0.2);
   private final int buttonH = int(height*0.07);
   private final int buttonGap = int(height*0.05);
   private final int topButton = int(height*0.3);
-  private String currentWeather = "";
   int counter = 0;
   
   Menu() {
@@ -97,12 +97,7 @@ public class Menu extends State {
   }
   
   public void update() {
-    if (counter==0){
-      currentWeather = getWeatherMain();
-      displayMenuBackground(currentWeather);
-      counter = 600;
-    }
-    counter--;
+    displayMenuBackground(currentWeather);
   }
 }
 

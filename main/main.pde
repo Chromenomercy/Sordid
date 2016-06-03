@@ -10,6 +10,9 @@ static String state = "menu";
 
 class State{
   /* Base class for states to extend */
+  public boolean isActive = false;
+  
+  //Methods to be overriden by child class
   public void update(){}
   public void begin(){}
   public void finish(){}
@@ -23,6 +26,10 @@ class State{
   public void sendMousePressed(MouseEvent e){}
   public void sendKeyReleased(KeyEvent e){}
   public void sendKeyTyped(KeyEvent e){}
+  
+  //Methods not to be overriden by child class
+  public void setIsActive(boolean a){this.isActive=a;}
+  public boolean getIsActive(){return this.isActive;}
 }
 
 void setup(){
@@ -41,6 +48,8 @@ void setup(){
   states.put("level editor", new LevelEditor());
   states.put("level editor loader", new LevelEditorLoader());
   setState("menu");
+  
+  thread("weatherThread");
 }
 
 //Event handling
@@ -84,8 +93,10 @@ static void setState(String newState){
   /* Use to change the state */
   //Finish old state
   states.get(state).finish();
+  states.get(state).setIsActive(false);
   //Start new state
   states.get(newState).begin();
+  states.get(newState).setIsActive(true);
   //Change state
   state = newState;
 }
