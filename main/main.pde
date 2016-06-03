@@ -34,7 +34,7 @@ class State{
 
 void setup(){
   Fisica.init(this);
-  fullScreen(P2D);
+  size(1300, 700, P2D);
   frameRate(60);
   initTextures();
   

@@ -102,7 +102,7 @@ public class Menu extends State {
 }
 
 void displayMenuBackground(String cw){
-    String b = "";
+    String b = "menuBackgrounds/clearDay";
     switch(cw){
     case"01d":
       b = "menuBackgrounds/clearDay";
