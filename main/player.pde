@@ -50,11 +50,11 @@ public class Player{
     armR.setFill(color(0));
     legL = new FBox(10, 50);
     legL.setRotation(radians(-45));
-    legL.setPosition(20, 100);
+    legL.setPosition(20, 90);
     legL.setFill(color(0));
     legR = new FBox(10, 50);
     legR.setRotation(radians(45));
-    legR.setPosition(-20, 100);
+    legR.setPosition(-20, 90);
     legR.setFill(color(0));
     body.setPosition(0, 42);
     body.setFill(color(0));
