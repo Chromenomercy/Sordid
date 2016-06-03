@@ -15,7 +15,7 @@ public class Game extends State{
     ground.setPosition(width/2, height-150);
     ground.setStatic(true);
     world.add(ground);
-    world.add(player.player);
+    world.add(player.entity);
     world.setEdges();
   }
   public void update(){

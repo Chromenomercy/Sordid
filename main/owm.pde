@@ -15,7 +15,7 @@ String cityName = "London";
 
 String getWeatherMain(){
   String f = "01d";
-  if (updateForcast()==0){
+  if (updateForcast()==0&&forecastJsonStr!=null){
     jObj = parseJSONObject(forecastJsonStr);
     f = jObj.getJSONArray("weather").getJSONObject(0).getString("icon");
   }

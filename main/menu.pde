@@ -6,6 +6,7 @@ public class Menu extends State {
   private final int buttonGap = int(height*0.05);
   private final int topButton = int(height*0.3);
   private String currentWeather = "";
+  int counter = 0;
   
   Menu() {
     addButtons();
@@ -22,6 +23,7 @@ public class Menu extends State {
   
   public void begin(){
     this.setState("main");
+    counter = 0;
   }
   
   private void ajustVisibleButtons(String s, boolean visible){
@@ -95,8 +97,12 @@ public class Menu extends State {
   }
   
   public void update() {
-    currentWeather = getWeatherMain();
-    displayMenuBackground(currentWeather);
+    if (counter==0){
+      currentWeather = getWeatherMain();
+      displayMenuBackground(currentWeather);
+      counter = 600;
+    }
+    counter--;
   }
 }
 
