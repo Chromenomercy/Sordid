@@ -151,6 +151,12 @@ void displayMenuBackground(String cw){
     case"50d":
       b = "menuBackgrounds/mistDay";
       break;
+    case"13d":
+      b = "menuBackgrounds/mistDay";
+      break;
+    case"13n":
+      b = "menuBackgrounds/mistNight";
+      break;
     }
     displayImage(b, 0, 0);
   }
