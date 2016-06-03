@@ -41,7 +41,6 @@ void setup(){
   states.put("level editor", new LevelEditor());
   states.put("level editor loader", new LevelEditorLoader());
   setState("menu");
-  
 }
 
 //Event handling

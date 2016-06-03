@@ -5,11 +5,19 @@ public class Menu extends State {
   private final int buttonH = int(height*0.07);
   private final int buttonGap = int(height*0.05);
   private final int topButton = int(height*0.3);
-  private String currentWeather;
+  private String currentWeather = "";
   
   Menu() {
-    addImage("menuBackground.png", width, height);
     addButtons();
+    addImage("menuBackgrounds/clearDay.png", width, height);
+    addImage("menuBackgrounds/clearNight.png", width, height);
+    addImage("menuBackgrounds/cloudyDay.png", width, height);
+    addImage("menuBackgrounds/cloudyNight.png", width, height);
+    addImage("menuBackgrounds/mistDay.png", width, height);
+    addImage("menuBackgrounds/mistNight.png", width, height);
+    addImage("menuBackgrounds/rainDay.png", width, height);
+    addImage("menuBackgrounds/rainNight.png", width, height);
+    addImage("menuBackgrounds/thunderstorm.png", width, height);
   }
   
   public void begin(){
@@ -87,9 +95,62 @@ public class Menu extends State {
   }
   
   public void update() {
-    displayImage("menuBackground", 0, 0);
-    
-    //weather stuff
     currentWeather = getWeatherMain();
+    displayMenuBackground(currentWeather);
   }
 }
+
+void displayMenuBackground(String cw){
+    String b = "";
+    switch(cw){
+    case"01d":
+      b = "menuBackgrounds/clearDay";
+      break;
+    case"01n":
+      b = "menuBackgrounds/clearNight";
+      break;
+    case"02d":
+      b = "menuBackgrounds/cloudyDay";
+      break;
+    case"03d":
+      b = "menuBackgrounds/cloudyDay";
+      break;
+    case"04d":
+      b = "menuBackgrounds/cloudyDay";
+      break;
+    case"02n":
+      b = "menuBackgrounds/cloudyNight";
+      break;
+    case"03n":
+      b = "menuBackgrounds/cloudyNight";
+      break;
+    case"04n":
+      b = "menuBackgrounds/cloudyNight";
+      break;
+    case"09d":
+      b = "menuBackgrounds/rainDay";
+      break;
+    case"10d":
+      b = "menuBackgrounds/rainDay";
+      break;
+    case"09n":
+      b = "menuBackgrounds/rainNight";
+      break;
+    case"10n":
+      b = "menuBackgrounds/rainNight";
+      break;
+    case"11d":
+      b = "menuBackgrounds/thunderstorm";
+      break;
+    case"11n":
+      b = "menuBackgrounds/thunderstorm";
+      break;
+    case"50n":
+      b = "menuBackgrounds/mistNight";
+      break;
+    case"50d":
+      b = "menuBackgrounds/mistDay";
+      break;
+    }
+    displayImage(b, 0, 0);
+  }
