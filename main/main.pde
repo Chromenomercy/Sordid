@@ -1,7 +1,6 @@
 import controlP5.*;
 import fisica.*;
 import java.util.*;
-import processing.data.XML;
 
 ControlP5 cp5;
 static HashMap<String, State> states = new HashMap<String, State>();

@@ -9,8 +9,8 @@ public class Game extends State{
     counter = 0;
     addImage("sordSpriteSheet.png");
     Fisica.setScale(100);
-    player = new Player(width/2, height-400);
     world = new FWorld();
+    player = new Player(width/2, height-400);
     FBox ground = new FBox(width, 100);
     ground.setPosition(width/2, height-100);
     ground.setStatic(true);
