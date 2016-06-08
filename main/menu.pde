@@ -158,6 +158,9 @@ void displayMenuBackground(String cw){
     case"13n":
       b = "menuBackgrounds/mistNight";
       break;
+    default:
+      print("invalid menu background");
+      b = "menuBackgrounds/clearNight";
     }
     displayImage(b, 0, 0);
   }
