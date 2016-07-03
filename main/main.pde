@@ -33,7 +33,7 @@ class State{
 
 void setup(){
   Fisica.init(this);
-  size(1920, 1080);
+  size(1300, 700);
   frameRate(60);
   initTextures();
   
